@@ -7,19 +7,6 @@ class POISerializer(serializers.HyperlinkedModelSerializer):
         model = POI
         fields = ['name', 'x', 'y', 'typ_0', 'typ_1', 'poly_15']
 
-        # {
-        #     type: "FeatureCollection",
-        #     features: [
-        #         {
-        #             type: "Feature",
-        #             geometry: {
-        #                 type: "Point",
-        #                 coordinates: [0, 0]
-        #             },
-        #             properties: {title: "HeatmapPts", id: 111, name: "sample 1"}
-        #         },
-        #     ]
-        # }
 
     def to_representation(self, instance):
         response_dict = dict()
@@ -28,9 +15,11 @@ class POISerializer(serializers.HyperlinkedModelSerializer):
             "type": "Point",
             "coordinates": [instance.x, instance.y]
         }
-        response_dict["properties"] = {"title": instance.name}
+        response_dict["properties"] = {"title": instance.name, "type": instance.typ_0, "type2": instance.typ_1}
         return response_dict
-
+#
+# LEFT-TOP 21.171520, 48.766840
+# BOTTOM_RIGHT 21.2987386, 48.689769
 
 class HomeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
