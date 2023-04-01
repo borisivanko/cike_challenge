@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from BussinessLocations.models import POI, Home, MHD
+import numpy as np
 
 
 class POISerializer(serializers.HyperlinkedModelSerializer):
@@ -15,11 +16,15 @@ class POISerializer(serializers.HyperlinkedModelSerializer):
             "type": "Point",
             "coordinates": [instance.x, instance.y]
         }
+
+        rel = max(min(instance.homes_in_proximity, 500)/500, 0.02)
+        w = (np.log10(rel) + 1.8) / 1.8
+
         response_dict["properties"] = {
             "title": instance.name,
             "type": instance.typ_0,
             "type2": instance.typ_1,
-            "homes_in_proximity": instance.homes_in_proximity
+            "weight": w
         }
         return response_dict
 #
@@ -54,5 +59,12 @@ class MHDSerializer(serializers.HyperlinkedModelSerializer):
             "type": "Point",
             "coordinates": [instance.x, instance.y]
         }
-        response_dict["properties"] = {"title": "trolejbus/elektricka", "homes_in_proximity": instance.homes_in_proximity}
+
+        rel = max(min(instance.homes_in_proximity, 500)/500, 0.02)
+        w = (np.log10(rel) + 1.8) / 1.8
+
+        response_dict["properties"] = {
+            "title": "trolejbus/elektricka",
+            "weight": w
+        }
         return response_dict
