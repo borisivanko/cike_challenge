@@ -35,3 +35,11 @@ class Home(models.Model):
 
     def __str__(self):
         return self.type + str(self.count)
+
+class MHD(models.Model):
+    id = models.IntegerField(primary_key=True)
+    tram = models.BooleanField(default=False)
+    tbus = models.BooleanField(default=False)
+    bus = models.BooleanField(default=False)
+    x = models.FloatField(default=0)
+    y = models.FloatField(default=0)
