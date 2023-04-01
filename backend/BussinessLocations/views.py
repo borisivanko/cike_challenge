@@ -40,11 +40,11 @@ def import_pois(request):
         csv_file = request.FILES['csv_file']
         file = csv_file.read()
         decoded_file = file.decode('utf-8').splitlines()
-        print(decoded_file)
         reader = csv.DictReader(decoded_file)
 
         for row in reader:
-            print(row)
+            new_poi = POI(name=row['name'], typ_0=row['typ_0'], typ_1=row['typ_1'], x=row['x'], y=row['y'])
+            new_poi.save()
         # Process each row and save to the database
 
         return Response(status=status.HTTP_201_CREATED, data={'message': 'CSV file imported successfully.'})
