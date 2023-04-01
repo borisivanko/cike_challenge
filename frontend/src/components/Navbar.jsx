@@ -31,6 +31,13 @@ function Navbar() {
                             >
                                 Map
                             </Link>
+                            <Link
+                                to="/people"
+                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                            >
+                                Ludia
+                            </Link>
+
                         </div>
                     </div>
                     <div className="-mr-2 flex md:hidden">

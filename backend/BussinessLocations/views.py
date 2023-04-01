@@ -3,6 +3,8 @@
 # from .views_collection.get_models_by_name import get_models_by_name
 import csv
 import sys
+import numpy as np
+import scipy.spatial as spatial
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -21,9 +23,13 @@ def get_pois(request):
     """
     List all models by <<Model Name>> with filter features
     """
+    category = request.GET.get('category','all')
 
     try:
-        pois = POI.objects.all()
+        if category == 'all':
+            pois = POI.objects.all()
+        else:
+            pois = POI.objects.filter(typ_0=category)
         # q = create_filter(name, request.query_params)
         # qs = ModelDocument.search().query(q).to_queryset()
         serializer = POISerializer(pois, many=True)
@@ -31,6 +37,11 @@ def get_pois(request):
     except Exception as e:
         return Response(status=status.HTTP_404_NOT_FOUND, data={'error': str(e)})
 
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def all_categories(request):
+    values = POI.objects.values_list('typ_0', flat=True).distinct()
+    return JsonResponse(list(values), safe=False)
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
 def get_homes(request):
@@ -116,5 +127,30 @@ def import_mhd(request):
         # Process each row and save to the database
 
         return Response(status=status.HTTP_201_CREATED, data={'message': 'CSV file imported successfully.'})
+    except Exception as e:
+        return Response(status=status.HTTP_400_BAD_REQUEST, data={'error': str(e)})
+
+@api_view(['POST'])
+@permission_classes((permissions.AllowAny,))
+def normalize_by_homes(request):
+    try:
+        homes = Home.objects.all()
+        counts = np.array([h.count for h in homes])
+        point_tree = spatial.cKDTree(np.array([[h.x, h.y] for h in homes]))
+
+        for p in POI.objects.all():
+            sum_counts = np.sum(counts[point_tree.query_ball_point(np.array([p.x, p.y]), 0.001)])
+            p.homes_in_proximity = sum_counts
+            p.save()
+        
+        
+        for p in MHD.objects.all():
+            sum_counts = np.sum(counts[point_tree.query_ball_point(np.array([p.x, p.y]), 0.001)])
+            p.homes_in_proximity = sum_counts
+            p.save()
+        
+        # Process each row and save to the database
+
+        return Response(status=status.HTTP_201_CREATED, data={'message': 'Data normalized by population successfully.'})
     except Exception as e:
         return Response(status=status.HTTP_400_BAD_REQUEST, data={'error': str(e)})
