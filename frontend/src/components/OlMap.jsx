@@ -24,12 +24,13 @@ function OlMap({mapId, heatMapGeoJson}) {
         const heatmapLayer = new Heatmap({
             title: "HeatMap",
             source: heatmapSource,
-            blur: calculateBlurRadius(15),
+            blur: calculateBlurRadius(15) * 1.5,
             radius: calculateBlurRadius(15),
             weight: function (feature) {
-                return 10;
+                return 1;
             },
-            gradient: ['rgba(132,255,0,0.77)', 'rgba(239,209,0,0.81)', 'rgba(255,60,0,0.75)', 'rgba(255,38,0,0.7)'],
+            opacity: 0.5,
+            gradient: ['rgb(132,255,0)', 'rgb(239,209,0)', 'rgb(255,60,0)', 'rgba(255,38,0)'],
 // Reverse the gradient
         });
 
@@ -78,7 +79,7 @@ function OlMap({mapId, heatMapGeoJson}) {
         map.getView().on('change:resolution', () => {
             const zoom = map.getView().getZoom();
             heatmapLayer.setRadius(calculateBlurRadius(zoom));
-            heatmapLayer.setBlur(calculateBlurRadius(zoom));
+            heatmapLayer.setBlur(calculateBlurRadius(zoom) * 1.5);
         });
 
         return () => {
