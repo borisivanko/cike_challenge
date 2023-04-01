@@ -25,6 +25,7 @@ class POI(models.Model):
     def __str__(self):
         return self.name
 
+
 class Home(models.Model):
     id = models.IntegerField(primary_key=True)
     x = models.FloatField()
@@ -33,4 +34,4 @@ class Home(models.Model):
     count = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return self.type + str(self.count)

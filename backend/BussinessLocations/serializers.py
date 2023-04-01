@@ -5,7 +5,7 @@ from BussinessLocations.models import POI, Home
 class POISerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = POI
-        fields = ['name', 'x', 'y', 'typ_1', 'poly_15' ]
+        fields = ['name', 'x', 'y', 'typ_0', 'typ_1', 'poly_15' ]
 
 
 class HomeSerializer(serializers.HyperlinkedModelSerializer):

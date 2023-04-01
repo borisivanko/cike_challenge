@@ -77,6 +77,7 @@ def import_homes(request):
         reader = csv.DictReader(decoded_file)
 
         for row in reader:
+            if row['Typ budovy'] in ['Bytovy dom', 'Rodinny dom', 'Iny budova', 'Budova ubytovacieho zariadenia']:
                 new_home = Home(id=row['id'], x=row['x'], y=row['y'], type=row['Typ budovy'], count=row['Pocet-bytov'])
                 new_home.save()
         # Process each row and save to the database
