@@ -37,6 +37,11 @@ def get_pois(request):
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
+def all_categories(request):
+    values = POI.objects.values_list('typ_0', flat=True).distinct()
+    return JsonResponse(list(values), safe=False)
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
 def get_homes(request):
     """
     List all models by <<Model Name>> with filter features
