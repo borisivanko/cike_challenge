@@ -2,7 +2,7 @@ import Map from 'ol/Map.js';
 import OSM from 'ol/source/OSM.js';
 import TileLayer from 'ol/layer/Tile.js';
 import View from 'ol/View.js';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import VectorSource from "ol/source/Vector.js";
 import {GeoJSON} from "ol/format.js";
 import {Heatmap} from "ol/layer.js";
