@@ -13,7 +13,6 @@ function OlMap({mapId, heatMapGeoJson}) {
 
     const [coordinates, setCoordinates] = useState([21.2611, 48.7164]);
 
-    console.log("rendering")
     useEffect(() => {
         const heatmapSource = new VectorSource({
             features: new GeoJSON().readFeatures(heatMapGeoJson, {
