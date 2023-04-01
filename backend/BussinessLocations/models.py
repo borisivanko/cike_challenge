@@ -1,6 +1,12 @@
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
+import csv
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+
 # Create your models here.
 
 class POI(models.Model):
@@ -18,3 +24,4 @@ class POI(models.Model):
 
     def __str__(self):
         return self.name
+

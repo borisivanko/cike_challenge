@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from BussinessLocations.views import get_pois
+from BussinessLocations.views import get_pois, import_pois
 
 
 # Routers provide an easy way of automatically determining the URL conf.
@@ -27,6 +27,7 @@ router = routers.DefaultRouter()
 urlpatterns = [
     # path('import', import_endpoint),
     path('list', get_pois),
+    path('import-pois', import_pois),
     # path('detail/<str:name>/<int:content_id>', get_models_by_name_and_id),
     # path('detail/<str:name>', get_models_by_name),
     path('', include(router.urls)),

@@ -27,7 +27,8 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-'d937-88-212-24-42.ngrok.io'
+'d937-88-212-24-42.ngrok.io',
+    'localhost',
 ]
 
 REST_FRAMEWORK = {

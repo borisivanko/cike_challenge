@@ -1,6 +1,11 @@
 # from .views_collection.import_endpoint import import_endpoint
 # from .views_collection.get_models_by_name_and_id import get_models_by_name_and_id
 # from .views_collection.get_models_by_name import get_models_by_name
+import csv
+import sys
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import permissions, status
 from rest_framework.decorators import permission_classes, api_view
 from rest_framework.response import Response
@@ -25,3 +30,23 @@ def get_pois(request):
         return Response(serializer.data)
     except Exception as e:
         return Response(status=status.HTTP_404_NOT_FOUND, data={'error': str(e)})
+
+
+csv.field_size_limit(sys.maxsize)
+@api_view(['POST'])
+@permission_classes((permissions.AllowAny,))
+def import_pois(request):
+    try:
+        csv_file = request.FILES['csv_file']
+        file = csv_file.read()
+        decoded_file = file.decode('utf-8').splitlines()
+        print(decoded_file)
+        reader = csv.DictReader(decoded_file)
+
+        for row in reader:
+            print(row)
+        # Process each row and save to the database
+
+        return Response(status=status.HTTP_201_CREATED, data={'message': 'CSV file imported successfully.'})
+    except Exception as e:
+        return Response(status=status.HTTP_400_BAD_REQUEST, data={'error': str(e)})
