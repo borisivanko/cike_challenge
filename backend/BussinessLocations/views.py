@@ -21,9 +21,13 @@ def get_pois(request):
     """
     List all models by <<Model Name>> with filter features
     """
+    category = request.GET.get('category','all')
 
     try:
-        pois = POI.objects.all()
+        if category == 'all':
+            pois = POI.objects.all()
+        else:
+            pois = POI.objects.filter(typ_0=category)
         # q = create_filter(name, request.query_params)
         # qs = ModelDocument.search().query(q).to_queryset()
         serializer = POISerializer(pois, many=True)
