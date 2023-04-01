@@ -6,10 +6,10 @@ function Map () {
     const [data, setData] = useState({type: "FeatureCollection",
     features: []});
     const [categories, setCategories] = useState([]);
-    const [category, setCategory] = useState('pharmacy');
+    const [selectedCategory, setSelectedCategory] = useState('pharmacy');
 
     useEffect(() => {
-        api.get(`/list-pois?category=${category}`)
+        api.get(`/list-pois?category=${selectedCategory}`)
             .then(response => {
                 setData(
                     {
@@ -21,7 +21,7 @@ function Map () {
             .catch(error => {
                 console.error(error);
             });
-    }, [category]);
+    }, [selectedCategory]);
 
     useEffect(() => {
 
@@ -39,19 +39,10 @@ function Map () {
     return (
         <>
             <div className="form-group">
-                {/*<label htmlFor="category">Category</label>*/}
-                {/*<select className="form-control" id="category" onChange={(e) => setCategory(e.target.value)}>*/}
-                {/*    {categories.map((category, index) => {*/}
-                {/*        return <option key={index} value={category}>{category}</option>*/}
-                {/*    }*/}
-                {/*    )}*/}
-                {/*</select>*/}
-
-                <div className="w-full bg-gray-800 flex" >
+                <div className="w-full bg-gray-800 flex flex-wrap py-4 px-4" >
                     {categories.map((category, index) => {
                         return   <div
-                        className="px-4 py-2 rounded-[38px] bg-[#f9eaea]"
-                        >
+                                className={`px-4 py-2 mx-2 my-2 cursor-pointer ${category === selectedCategory ? "bg-[#32CD32]" : "bg-[#f9eaea]"} `} onClick={() => {  setSelectedCategory(category) }}>
                         <p className="text-base font-semibold text-center text-black">
                     {category}
                         </p>
