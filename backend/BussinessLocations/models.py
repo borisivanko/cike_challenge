@@ -25,3 +25,12 @@ class POI(models.Model):
     def __str__(self):
         return self.name
 
+class Home(models.Model):
+    id = models.IntegerField(primary_key=True)
+    x = models.FloatField()
+    y = models.FloatField()
+    type = models.CharField(max_length=50)
+    count = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
