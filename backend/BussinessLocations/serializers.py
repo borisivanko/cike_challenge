@@ -15,7 +15,12 @@ class POISerializer(serializers.HyperlinkedModelSerializer):
             "type": "Point",
             "coordinates": [instance.x, instance.y]
         }
-        response_dict["properties"] = {"title": instance.name, "type": instance.typ_0, "type2": instance.typ_1}
+        response_dict["properties"] = {
+            "title": instance.name,
+            "type": instance.typ_0,
+            "type2": instance.typ_1,
+            "homes_in_proximity": instance.homes_in_proximity
+        }
         return response_dict
 #
 # LEFT-TOP 21.171520, 48.766840
@@ -49,5 +54,5 @@ class MHDSerializer(serializers.HyperlinkedModelSerializer):
             "type": "Point",
             "coordinates": [instance.x, instance.y]
         }
-        response_dict["properties"] = {"title": "trolejbus/elektricka"}
+        response_dict["properties"] = {"title": "trolejbus/elektricka", "homes_in_proximity": instance.homes_in_proximity}
         return response_dict

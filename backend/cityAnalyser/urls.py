@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from BussinessLocations.views import get_pois, get_homes, get_mhd, import_pois, import_homes, import_mhd, all_categories
+from BussinessLocations.views import get_pois, get_homes, get_mhd, import_pois, import_homes, import_mhd, all_categories, normalize_by_homes
 
 
 # Routers provide an easy way of automatically determining the URL conf.
@@ -33,6 +33,7 @@ urlpatterns = [
     path('import-homes', import_homes),
     path('import-mhd', import_mhd),
     path('all-categories', all_categories),
+    path('normalize/', normalize_by_homes),
     # path('detail/<str:name>/<int:content_id>', get_models_by_name_and_id),
     # path('detail/<str:name>', get_models_by_name),
     path('', include(router.urls)),

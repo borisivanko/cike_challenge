@@ -21,6 +21,7 @@ class POI(models.Model):
     poly_20 = ArrayField(models.FloatField(null=True, blank=True), null=True, blank=True)
     last_updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    homes_in_proximity = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -43,3 +44,4 @@ class MHD(models.Model):
     bus = models.BooleanField(default=False)
     x = models.FloatField(default=0)
     y = models.FloatField(default=0)
+    homes_in_proximity = models.IntegerField(default=0)
