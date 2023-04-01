@@ -31,5 +31,3 @@ To use the Business Location Finder service, simply visit our website and follow
 ## Contributing
 
 At this time, we are not accepting contributions to the Business Location Finder project.
-License
-The Business Location Finder service is licensed under the MIT License.
