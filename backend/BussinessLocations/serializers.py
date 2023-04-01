@@ -17,6 +17,9 @@ class POISerializer(serializers.HyperlinkedModelSerializer):
         }
         response_dict["properties"] = {"title": instance.name, "type": instance.typ_0, "type2": instance.typ_1}
         return response_dict
+#
+# LEFT-TOP 21.171520, 48.766840
+# BOTTOM_RIGHT 21.2987386, 48.689769
 
 class HomeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
