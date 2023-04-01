@@ -46,11 +46,9 @@ function OlMap({mapId, heatMapGeoJson}) {
         map.getView().on('change:resolution', (event) => {
             const zoom = map.getView().getZoom()
             heatmapLayer.setRadius(zoom * 100)
-            console.log(map.get)
         });
 
         return () => {
-            setOlMap(undefined)
             map.setTarget(undefined)
         }
     }, []);
