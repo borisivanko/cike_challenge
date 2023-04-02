@@ -7,6 +7,7 @@ function Map () {
     features: []});
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('pharmacy');
+    const [showTitles, setShowTitles] = useState(false);
 
     useEffect(() => {
         api.get(`/list-pois?category=${selectedCategory}`)
@@ -21,6 +22,7 @@ function Map () {
             .catch(error => {
                 console.error(error);
             });
+
     }, [selectedCategory]);
 
     useEffect(() => {
@@ -29,7 +31,7 @@ function Map () {
         api.get('/all-categories')
             .then(response => {
                 console.log(response.data)
-                setCategories(response.data)
+                setCategories([...response.data, 'all'])
             })
             .catch(error => {
                 console.error(error);
@@ -52,8 +54,21 @@ function Map () {
                 </div>
             </div>
 
+
+            <div className="form-group">
+                <div className="w-full bg-gray-800 flex flex-wrap py-4 px-4" >
+                    <div className="cursor-pointer" onClick={() => {  setShowTitles(!showTitles) }}>
+                        <p className="text-base font-semibold text-center text-white">
+                            {showTitles ? "Hide Titles": "Show titles"}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
             {data.features.length &&
-                <OlMap heatMapGeoJson={data} mapId='map' categories={categories}/>
+                <OlMap heatMapGeoJson={data} mapId='map' categories={categories} showTitles={showTitles}/>
             }
         </>
     )
