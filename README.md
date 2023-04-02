@@ -6,8 +6,8 @@ The Business Location Finder is a service that helps entrepreneurs find the perf
 
 - [Getting Started](#getting-started)
 - [Features](#features)
-- [Usage](#usage)
 - [Contributing](#contributing)
+- [Meow](#meow)
 
 ## Getting Started
 
@@ -31,3 +31,7 @@ To use the Business Location Finder service, simply visit our website and follow
 ## Contributing
 
 At this time, we are not accepting contributions to the Business Location Finder project.
+
+## Meow
+
+![](https://1.bp.blogspot.com/-QghwtXDtQvU/YKqZ9gotY6I/AAAAAAAAPuE/NUTIDJ9p0MgwvqXwJN7ZDCDhTMezj6lUQCLcBGAsYHQ/s16000/Art%2BCat%2BGIF%2Bwith%2Bcaption%2B%25E2%2580%25A2%2BAffectionate%2Bkitty%2Bhugs%2Band%2Bkissses%2Bher%2Bhuman%2B%25E2%2580%25A2%2B%2527I%2BLOVE%2BYOU%2527.gif)
