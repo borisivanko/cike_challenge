@@ -76,18 +76,6 @@ function Map () {
                         </div>
                     })}
 
-                    {showCategories &&
-                        <div className="form-group">
-                            <div className="bg-gray-800 hover:bg-gray-900 text-white flex flex-wrap py-2 px-4 mx-2 my-2">
-                                <div className="cursor-pointer" onClick={() => {  setShowTitles(!showTitles) }}>
-                                    <p className="text-base font-semibold text-center text-white">
-                                        {showTitles ? "Hide Titles": "Show titles"}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    }
-
                 </div>
             </div>
             
