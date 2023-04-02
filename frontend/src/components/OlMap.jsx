@@ -8,11 +8,12 @@ import {GeoJSON} from "ol/format.js";
 import {Heatmap, Vector} from "ol/layer.js";
 import {Circle, Fill, Stroke, Style, Text} from "ol/style.js";
 
+const calculateBlurRadius = (zoom) => Math.exp(Math.exp(zoom * 0.105)) * 0.5 - 17
+
 function OlMap({mapId, heatMapGeoJson}) {
 
     const [coordinates, setCoordinates] = useState([21.2611, 48.7164]);
 
-    console.log("rendering")
     useEffect(() => {
         const heatmapSource = new VectorSource({
             features: new GeoJSON().readFeatures(heatMapGeoJson, {
@@ -24,12 +25,13 @@ function OlMap({mapId, heatMapGeoJson}) {
         const heatmapLayer = new Heatmap({
             title: "HeatMap",
             source: heatmapSource,
-            blur: 150,
-            radius: 40,
+            blur: calculateBlurRadius(15) * 1.5,
+            radius: calculateBlurRadius(15),
             weight: function (feature) {
-                return 10;
+                return 1;
             },
-            gradient: ['rgba(132,255,0,0.77)', 'rgba(239,209,0,0.81)', 'rgba(255,60,0,0.75)', 'rgba(255,38,0,0.7)'],
+            opacity: 0.5,
+            gradient: ['rgb(132,255,0)', 'rgb(239,209,0)', 'rgb(255,60,0)', 'rgba(255,38,0)'],
 // Reverse the gradient
         });
 
@@ -89,6 +91,8 @@ function OlMap({mapId, heatMapGeoJson}) {
                 center: coordinates,
                 origin: 'bottom-right',
                 zoom: 15,
+                maxZoom: 17,
+                minZoom: 13.5
             }),
         })
 
@@ -97,9 +101,10 @@ function OlMap({mapId, heatMapGeoJson}) {
             console.log( map.getView().getCenter());
         });
 
-        map.getView().on('change:resolution', (event) => {
-            const zoom = map.getView().getZoom()
-            heatmapLayer.setRadius(zoom * 2)
+        map.getView().on('change:resolution', () => {
+            const zoom = map.getView().getZoom();
+            heatmapLayer.setRadius(calculateBlurRadius(zoom));
+            heatmapLayer.setBlur(calculateBlurRadius(zoom) * 1.5);
         });
 
         return () => {
@@ -107,9 +112,10 @@ function OlMap({mapId, heatMapGeoJson}) {
         }
     }, [heatMapGeoJson]);
 
-
     return (
-        <div style={{height:'100vh',width:'100%'}} className="map-container" id={mapId}/>
+        <>
+            <div style={{height:'100vh',width:'100%'}} className="map-container" id={mapId}/>
+        </>
     );
 }
 
