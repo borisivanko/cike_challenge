@@ -17,8 +17,8 @@ class POISerializer(serializers.HyperlinkedModelSerializer):
             "coordinates": [instance.x, instance.y]
         }
 
-        rel = max(min(instance.homes_in_proximity, 500)/500, 0.02)
-        w = (np.log10(rel) + 1.8) / 1.8
+        rel = min(instance.homes_in_proximity, 500)/500
+        w = (np.log10(rel) + 1.8) / 1.8 if rel >= 0.02 else 0
 
         response_dict["properties"] = {
             "title": instance.name,
@@ -43,7 +43,7 @@ class HomeSerializer(serializers.HyperlinkedModelSerializer):
             "type": "Point",
             "coordinates": [instance.x, instance.y]
         }
-        response_dict["properties"] = {"title": instance.type, "weight": instance.count}
+        response_dict["properties"] ={"weight": instance.count}
         return response_dict
 
 
@@ -60,8 +60,8 @@ class MHDSerializer(serializers.HyperlinkedModelSerializer):
             "coordinates": [instance.x, instance.y]
         }
 
-        rel = max(min(instance.homes_in_proximity, 500)/500, 0.02)
-        w = (np.log10(rel) + 1.8) / 1.8
+        rel = min(instance.homes_in_proximity, 500)/500
+        w = (np.log10(rel) + 1.8) / 1.8 if rel >= 0.02 else 0
 
         response_dict["properties"] = {
             "title": "trolejbus/elektricka",
