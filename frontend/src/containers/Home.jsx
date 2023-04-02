@@ -11,7 +11,7 @@ function Home() {
                         <img src={catTownGif} alt="Cityscape" className="rounded-lg shadow-lg"/>
                     </div>
                     <div className="w-full md:w-1/2 text-white ml-8">
-                        <h1 className="text-4xl font-bold mb-6">Discover the Gaps in Your City's Market</h1>
+                        <h1 className="text-4xl font-bold mb-6">Discover the Gaps in Your City's Market 🙀</h1>
                         <p className="text-xl mb-10">Find out where there's a high demand for businesses like yours with
                             our location-based heatmap.</p>
                         <Link to='/map'
@@ -47,18 +47,21 @@ function Home() {
                     <div className="flex flex-wrap -mx-4">
                         <div className="w-full md:w-1/3 px-4 mb-8">
                             <div className="bg-gray-100 rounded-lg p-6 flex flex-col h-full">
+                                <div className='text-6xl text-center mb-6'>🙀</div>
                                 <h3 className="text-xl font-bold mb-2">Location-based Analysis</h3>
                                 <p className="text-lg flex-grow">Our service uses location-based data to identify areas with high demand for certain types of businesses.</p>
                             </div>
                         </div>
                         <div className="w-full md:w-1/3 px-4 mb-8">
                             <div className="bg-gray-100 rounded-lg p-6 flex flex-col h-full">
+                                <span className='text-6xl text-center mb-6'>😻</span>
                                 <h3 className="text-xl font-bold mb-2">Real-time Insights</h3>
                                 <p className="text-lg flex-grow">Our service provides real-time insights to help you stay up-to-date with changing market conditions.</p>
                             </div>
                         </div>
                         <div className="w-full md:w-1/3 px-4 mb-8">
                             <div className="bg-gray-100 rounded-lg p-6 flex flex-col h-full">
+                                <span className='text-6xl text-center mb-6'>🙀</span>
                                 <h3 className="text-xl font-bold mb-2">Customizable Search</h3>
                                 <p className="text-lg flex-grow">Our service allows you to customize your search to find the perfect location for your business.</p>
                             </div>
