@@ -13,12 +13,14 @@ import {Feature} from "ol";
 
 const calculateBlurRadius = (zoom) => Math.exp(Math.exp(zoom * 0.105)) * 0.6 - 17
 
-function OlMap({mapId, heatMapGeoJson, showTitles}) {
+function OlMap({mapId, heatMapGeoJson, showTitles, selectedCategory, categories}) {
     const [pinLocations, setPinLocations] = useState({type: "FeatureCollection",
         features: []});
     const [coordinates, setCoordinates] = useState([21.2611, 48.7164]);
     const [peopleInProximity, setPeopleInProximity] = useState(null);
+    const [poisInProximity, setPoisInProximity] = useState(null);
     const [pinSource, setPinSource] = useState(null);
+    const [zoom, setZoom] = useState(15);
 
     useEffect(() => {
         const heatmapSource = new VectorSource({
@@ -122,7 +124,7 @@ function OlMap({mapId, heatMapGeoJson, showTitles}) {
                 // center: [21.2611, 48.7164],
                 center: coordinates,
                 origin: 'bottom-right',
-                zoom: 15,
+                zoom: zoom,
                 maxZoom: 17,
                 minZoom: 13.5
             }),
@@ -147,10 +149,19 @@ function OlMap({mapId, heatMapGeoJson, showTitles}) {
                 .catch(error => {
                     console.error(error);
                 });
+
+            api.get(`/pois-in-proximity?x=${x}&y=${y}&radius=${radius}&category=${selectedCategory}`)
+                .then(response => {
+                    setPoisInProximity(response.data["number_of_pois"])
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         })
 
         map.getView().on('change:resolution', () => {
             const zoom = map.getView().getZoom();
+            setZoom(zoom);
             heatmapLayer.setRadius(calculateBlurRadius(zoom));
             heatmapLayer.setBlur(calculateBlurRadius(zoom) * 2.25);
         });
@@ -163,8 +174,15 @@ function OlMap({mapId, heatMapGeoJson, showTitles}) {
     return (
         <div className="flex">
             <div style={{height:'100vh',width:'100%'}} className="map-container" id={mapId}/>
-            <div className="bg-[#31a354] py-6 px-2">
-                {peopleInProximity && <p className="text-base font-semibold text-center text-black">Flats in 1km proximity: <span className="text-white text-2xl">{peopleInProximity}</span></p>}
+            <div className="bg-[#31a354] py-6 px-2 flex flex-col gap-10 justify-center">
+                <div className="my-4">
+                    {peopleInProximity && <p className="text-base font-semibold text-center text-black">Flats in 1km proximity <br/> a.k.a Number of potentional customers: <br/> <span className="text-white text-2xl">{peopleInProximity}</span></p>}
+                </div>
+
+                <div className="my-4">
+                    {poisInProximity && <p className="text-base font-semibold text-center text-black">Similar spots in 1km proximity<br/> a.k.a Number of potentional competitors: <br/> <span className="text-white text-2xl">{poisInProximity}</span></p>}
+                </div>
+
             </div>
 
         </div>

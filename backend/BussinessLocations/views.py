@@ -169,6 +169,23 @@ def get_number_of_people_in_proximity(request):
         counts = np.array([h.count for h in homes])
         point_tree = spatial.cKDTree(np.array([[h.x, h.y] for h in homes]))
         sum_counts = np.sum(counts[point_tree.query_ball_point(np.array([x, y]), radius)])
-        return Response(status=status.HTTP_201_CREATED, data={'number_of_people': sum_counts})
+        return Response(status=status.HTTP_200_OK, data={'number_of_people': sum_counts})
     except Exception as e:
         return Response(status=status.HTTP_400_BAD_REQUEST, data={'error': str(e)})
+
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_number_of_pois_in_proximity_by_category(request):
+    try:
+        x = float(request.GET['x'])
+        y = float(request.GET['y'])
+        radius = float(request.GET['radius'])
+        category = request.GET['category']
+        pois = POI.objects.filter(typ_1=category)
+        point_tree = spatial.cKDTree(np.array([[p.x, p.y] for p in pois]))
+        sum_counts = len(point_tree.query_ball_point(np.array([x, y]), radius))
+        return Response(status=status.HTTP_200_OK, data={'number_of_pois': sum_counts})
+    except Exception as e:
+        return Response(status=status.HTTP_400_BAD_REQUEST, data={'error': str(e)})
+
