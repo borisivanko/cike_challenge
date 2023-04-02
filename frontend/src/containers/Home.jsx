@@ -32,7 +32,7 @@ function Home() {
                             <p className="text-xl">With this information, you can make informed decisions about where to
                                 open your business and maximize your chances of success.</p>
                         </div>
-                        <div className="w-full md:w-1/2">
+                        <div className="w-full md:w-1/2 flex justify-end">
                             <img src={catMagnifyingGlass} alt="Heatmap" className="rounded-lg shadow-lg"/>
                         </div>
                     </div>
@@ -48,20 +48,20 @@ function Home() {
                         <div className="w-full md:w-1/3 px-4 mb-8">
                             <div className="bg-gray-100 rounded-lg p-6 flex flex-col h-full">
                                 <div className='text-6xl text-center mb-6'>🙀</div>
-                                <h3 className="text-xl font-bold mb-2">Location-based Analysis</h3>
+                                <h3 className="text-xl font-bold mb-2 text-center">Location-based Analysis</h3>
                                 <p className="text-lg flex-grow">Our service uses location-based data to identify areas with high demand for certain types of businesses.</p>
                             </div>
                         </div>
                         <div className="w-full md:w-1/3 px-4 mb-8">
                             <div className="bg-gray-100 rounded-lg p-6 flex flex-col h-full">
                                 <span className='text-6xl text-center mb-6'>😻</span>
-                                <h3 className="text-xl font-bold mb-2">Real-time Insights</h3>
+                                <h3 className="text-xl font-bold mb-2 text-center">Real-time Insights</h3>
                                 <p className="text-lg flex-grow">Our service provides real-time insights to help you stay up-to-date with changing market conditions.</p>
                             </div>
                         </div>
                         <div className="w-full md:w-1/3 px-4 mb-8">
                             <div className="bg-gray-100 rounded-lg p-6 flex flex-col h-full">
-                                <span className='text-6xl text-center mb-6'>🙀</span>
+                                <span className='text-6xl text-center mb-6 text-center'>🙀</span>
                                 <h3 className="text-xl font-bold mb-2">Customizable Search</h3>
                                 <p className="text-lg flex-grow">Our service allows you to customize your search to find the perfect location for your business.</p>
                             </div>
