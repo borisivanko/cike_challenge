@@ -29,13 +29,20 @@ function Navbar() {
                                 to="/map"
                                 className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                             >
-                                Map
+                                Location Of Points of Interests
                             </Link>
                             <Link
                                 to="/people"
                                 className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                             >
-                                Ludia
+                                People Distribution
+                            </Link>
+
+                            <Link
+                                to="/sad-people"
+                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                            >
+                                Sad People
                             </Link>
 
                         </div>
