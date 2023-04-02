@@ -42,7 +42,7 @@ function Home() {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-10">
                         <h2 className="text-3xl font-bold">Key Features</h2>
-i                        <p className="text-xl">Our service provides a range of features to help entrepreneurs identify gaps in their city's market.</p>
+                        <p className="text-xl">Our service provides a range of features to help entrepreneurs identify gaps in their city's market.</p>
                     </div>
                     <div className="flex flex-wrap -mx-4">
                         <div className="w-full md:w-1/3 px-4 mb-8">
