@@ -30,7 +30,7 @@ function Map () {
         api.get('/all-categories')
             .then(response => {
                 console.log(response.data)
-                setCategories(response.data)
+                setCategories([...response.data, 'all'])
             })
             .catch(error => {
                 console.error(error);
@@ -57,6 +57,18 @@ function Map () {
                         </p>
                         </div>
                     })}
+
+                </div>
+            </div>
+
+
+            <div className="form-group">
+                <div className="w-full bg-gray-800 flex flex-wrap py-4 px-4" >
+                    <div className="cursor-pointer" onClick={() => {  setShowTitles(!showTitles) }}>
+                        <p className="text-base font-semibold text-center text-white">
+                            {showTitles ? "Hide Titles": "Show titles"}
+                        </p>
+                    </div>
                 </div>
             </div>
 
