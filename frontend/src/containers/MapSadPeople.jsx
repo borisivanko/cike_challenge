@@ -44,7 +44,7 @@ function Map () {
     return (
         <>
             <div className="form-group">
-                <div className="w-full bg-gray-800 flex flex-wrap py-4 px-4" >
+                <div className="w-full bg-primary-dark flex flex-wrap py-4 px-4" >
                     <div className={`w-full transition flex items-center justify-center text-white ${!showCategories && 'rotate-180'}`} onClick={() => setShowCategories((prevState) => !prevState)}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd"
