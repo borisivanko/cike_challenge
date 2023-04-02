@@ -10,7 +10,7 @@ function Home() {
                     <div className="w-full md:w-1/2 mb-12 md:mb-0">
                         <img src={catTownGif} alt="Cityscape" className="rounded-lg shadow-lg"/>
                     </div>
-                    <div className="w-full md:w-1/2 text-white">
+                    <div className="w-full md:w-1/2 text-white ml-8">
                         <h1 className="text-4xl font-bold mb-4">Discover the Gaps in Your City's Market</h1>
                         <p className="text-xl mb-8">Find out where there's a high demand for businesses like yours with
                             our location-based heatmap.</p>
@@ -42,7 +42,7 @@ function Home() {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-10">
                         <h2 className="text-3xl font-bold">Key Features</h2>
-i                        <p className="text-xl">Our service provides a range of features to help entrepreneurs identify gaps in their city's market.</p>
+                        <p className="text-xl">Our service provides a range of features to help entrepreneurs identify gaps in their city's market.</p>
                     </div>
                     <div className="flex flex-wrap -mx-4">
                         <div className="w-full md:w-1/3 px-4 mb-8">

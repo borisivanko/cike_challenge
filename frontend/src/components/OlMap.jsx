@@ -83,6 +83,17 @@ function OlMap({mapId, heatMapGeoJson, showTitles, selectedCategory, categories}
             if (showTitles) {
                 style.getText().setText(feature.get('title', ""));
             }
+            let color = '#6ae850'
+            let radius = 2
+            if (feature.get('type')) {
+                color = '#1e6cd0'
+                radius = 4
+            }
+            style.setImage(new Circle({
+                radius: radius,
+                fill: new Fill({color: color})
+            }))
+
             return style;
         }
 
@@ -129,7 +140,7 @@ function OlMap({mapId, heatMapGeoJson, showTitles, selectedCategory, categories}
                 center: coordinates,
                 origin: 'bottom-right',
                 zoom: zoom,
-                maxZoom: 17,
+                maxZoom: 20,
                 minZoom: 13.5
             }),
         })
@@ -181,15 +192,15 @@ function OlMap({mapId, heatMapGeoJson, showTitles, selectedCategory, categories}
             <div style={{height:'100vh',width:'100%'}} className="map-container" id={mapId}/>
             <div className="bg-[#31a354] py-6 px-2 flex flex-col gap-12">
                 <div className="my-4">
-                    {peopleInProximity && <p className="text-base font-semibold text-center text-black">Flats in 1km proximity <br/> a.k.a Number of potentional customers: <br/> <span className="text-white text-2xl">{peopleInProximity}</span></p>}
+                    {!!peopleInProximity && <p className="text-base font-semibold text-center text-black">Flats in 1km proximity <br/> a.k.a Number of potentional customers: <br/> <span className="text-white text-2xl">{peopleInProximity}</span></p>}
                 </div>
 
                 <div className="my-4">
-                    {poisInProximity && <p className="text-base font-semibold text-center text-black">Similar spots in 1km proximity<br/> a.k.a Number of potentional competitors: <br/> <span className="text-white text-2xl">{poisInProximity}</span></p>}
+                    {!!poisInProximity && <p className="text-base font-semibold text-center text-black">Similar spots in 1km proximity<br/> a.k.a Number of potentional competitors: <br/> <span className="text-white text-2xl">{poisInProximity}</span></p>}
                 </div>
 
                 <div className="my-4">
-                    {selectedCategory && <p className="text-base font-semibold text-center text-black">Selected Category<br/> <br/> <span className="text-white text-2xl">{categoriesTranslations[selectedCategory] ?? selectedCategory}</span></p>}
+                    {!!selectedCategory && <p className="text-base font-semibold text-center text-black">Selected Category<br/> <br/> <span className="text-white text-2xl">{categoriesTranslations[selectedCategory] ?? selectedCategory}</span></p>}
                 </div>
 
             </div>
