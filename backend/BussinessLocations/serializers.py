@@ -38,7 +38,7 @@ class HomeSerializer(serializers.HyperlinkedModelSerializer):
             "type": "Point",
             "coordinates": [instance.x, instance.y]
         }
-        response_dict["properties"] = {"title": instance.type, "weight": instance.count}
+        response_dict["properties"] ={"weight": instance.count}
         return response_dict
 
 

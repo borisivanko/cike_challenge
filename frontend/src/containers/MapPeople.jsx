@@ -24,7 +24,7 @@ function Map () {
 
     return (
         <>
-            {data.features.length &&
+            {!!data.features.length &&
                 <OlMap heatMapGeoJson={data} mapId='map' categories={categories}/>
             }
         </>

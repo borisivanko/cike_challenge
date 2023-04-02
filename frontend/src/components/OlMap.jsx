@@ -69,7 +69,7 @@ function OlMap({mapId, heatMapGeoJson}) {
             }),
         });
         var styleFunction = function(feature) {
-            style.getText().setText(feature.get('title'));
+            style.getText().setText(feature.get('title', ""));
             return style;
         }
 

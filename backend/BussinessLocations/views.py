@@ -49,11 +49,13 @@ def get_homes(request):
     List all models by <<Model Name>> with filter features
     """
 
+    print("getting homes")
     try:
         homes = Home.objects.all()
         # q = create_filter(name, request.query_params)
         # qs = ModelDocument.search().query(q).to_queryset()
         serializer = HomeSerializer(homes, many=True)
+        print("homes done")
         return Response(serializer.data)
     except Exception as e:
         return Response(status=status.HTTP_404_NOT_FOUND, data={'error': str(e)})
