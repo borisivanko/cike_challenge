@@ -55,7 +55,7 @@ function Map () {
 
                     {showCategories && categories.map((category) => {
                         return   <div key={category}
-                                className={`px-4 py-2 mx-2 my-2 cursor-pointer ${category === selectedCategory ? "bg-[#32CD32]" : "bg-[#f9eaea]"} `} onClick={() => {  setSelectedCategory(category) }}>
+                                className={`px-4 py-2 mx-2 my-2 cursor-pointer transition ${category === selectedCategory ? "bg-primary-light hover:bg-primary" : "bg-white hover:bg-gray-300"} `} onClick={() => {  setSelectedCategory(category) }}>
                         <p className="text-base font-semibold text-center text-black">
                     {categoriesTranslations[category] ?? category}
                         </p>
@@ -63,7 +63,7 @@ function Map () {
                     })}
                     {showCategories &&
                         <div className="form-group">
-                            <div className="w-full bg-gray-800 flex flex-wrap py-4 px-4" >
+                            <div className="bg-gray-800 hover:bg-gray-900 text-white flex flex-wrap py-2 px-4 mx-2 my-2">
                                 <div className="cursor-pointer" onClick={() => {  setShowTitles(!showTitles) }}>
                                     <p className="text-base font-semibold text-center text-white">
                                         {showTitles ? "Hide Titles": "Show titles"}
