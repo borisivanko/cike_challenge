@@ -83,6 +83,16 @@ function OlMap({mapId, heatMapGeoJson, showTitles, selectedCategory, categories}
             if (showTitles) {
                 style.getText().setText(feature.get('title', ""));
             }
+            let color = '#6ae850'
+            let radius = 2
+            if (feature.get('type')) {
+                color = '#1e6cd0'
+                radius = 4
+            }
+            style.setImage(new Circle({
+                radius: radius,
+                fill: new Fill({color: color})
+            }))
 
             return style;
         }
