@@ -11,7 +11,7 @@ function Home() {
                         <img src={catTownGif} alt="Cityscape" className="rounded-lg shadow-lg"/>
                     </div>
                     <div className="w-full md:w-1/2 text-white ml-8">
-                        <h1 className="text-4xl font-bold mb-6">Discover the Gaps in Your City's Market 🙀</h1>
+                        <h1 className="text-4xl font-bold mb-6">Discover the Gaps in Your City's Market 🐈</h1>
                         <p className="text-xl mb-10">Find out where there's a high demand for businesses like yours with
                             our location-based heatmap.</p>
                         <Link to='/map'
