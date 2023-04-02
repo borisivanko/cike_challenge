@@ -29,7 +29,7 @@ def get_pois(request):
         if category == 'all':
             pois = POI.objects.all()
         else:
-            pois = POI.objects.filter(typ_0=category)
+            pois = POI.objects.filter(typ_1=category)
         # q = create_filter(name, request.query_params)
         # qs = ModelDocument.search().query(q).to_queryset()
         serializer = POISerializer(pois, many=True)
@@ -40,7 +40,7 @@ def get_pois(request):
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
 def all_categories(request):
-    values = POI.objects.values_list('typ_0', flat=True).distinct()
+    values = POI.objects.values_list('typ_1', flat=True).distinct()
     return JsonResponse(list(values), safe=False)
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
@@ -55,7 +55,7 @@ def get_homes(request):
         # q = create_filter(name, request.query_params)
         # qs = ModelDocument.search().query(q).to_queryset()
         serializer = HomeSerializer(homes, many=True)
-        print("homes done")
+        print("homes doney")
         return Response(serializer.data)
     except Exception as e:
         return Response(status=status.HTTP_404_NOT_FOUND, data={'error': str(e)})
@@ -154,5 +154,21 @@ def normalize_by_homes(request):
         # Process each row and save to the database
 
         return Response(status=status.HTTP_201_CREATED, data={'message': 'Data normalized by population successfully.'})
+    except Exception as e:
+        return Response(status=status.HTTP_400_BAD_REQUEST, data={'error': str(e)})
+
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_number_of_people_in_proximity(request):
+    try:
+        x = float(request.GET['x'])
+        y = float(request.GET['y'])
+        radius = float(request.GET['radius'])
+        homes = Home.objects.all()
+        counts = np.array([h.count for h in homes])
+        point_tree = spatial.cKDTree(np.array([[h.x, h.y] for h in homes]))
+        sum_counts = np.sum(counts[point_tree.query_ball_point(np.array([x, y]), radius)])
+        return Response(status=status.HTTP_201_CREATED, data={'number_of_people': sum_counts})
     except Exception as e:
         return Response(status=status.HTTP_400_BAD_REQUEST, data={'error': str(e)})
