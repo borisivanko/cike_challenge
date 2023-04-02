@@ -156,6 +156,7 @@ function OlMap({mapId, heatMapGeoJson, showTitles, selectedCategory, categories}
 
             api.get(`/pois-in-proximity?x=${x}&y=${y}&radius=${radius}&category=${selectedCategory}`)
                 .then(response => {
+                    console.log(response.data["number_of_pois"])
                     setPoisInProximity(response.data["number_of_pois"])
                 })
                 .catch(error => {

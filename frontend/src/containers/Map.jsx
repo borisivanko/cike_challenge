@@ -77,7 +77,7 @@ function Map () {
             </div>
 
             {!loadingSelectedCategory ?
-                <OlMap heatMapGeoJson={data} mapId='map' categories={categories} showTitles={showTitles}/> :
+                <OlMap heatMapGeoJson={data} mapId='map' categories={categories} showTitles={showTitles} selectedCategory={selectedCategory}/> :
                 <div className='flex justify-center'>
                     <CatLoadingSpinner/>
                 </div>
