@@ -7,6 +7,7 @@ function Map () {
     features: []});
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('pharmacy');
+    const [showTitles, setShowTitles] = useState(false);
     const [showCategories, setShowCategories] = useState(true)
 
     useEffect(() => {
@@ -73,7 +74,7 @@ function Map () {
             </div>
 
             {data.features.length &&
-                <OlMap heatMapGeoJson={data} mapId='map' categories={categories}/>
+                <OlMap heatMapGeoJson={data} mapId='map' categories={categories} showTitles={showTitles}/>
             }
         </>
     )
