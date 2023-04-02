@@ -38,7 +38,7 @@ function Navbar() {
 
                             <Link
                                 to="/sad-people"
-                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                className="text-gray-300 hover:bg-primary hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                             >
                                 Sad People
                             </Link>
@@ -104,6 +104,18 @@ function Navbar() {
                         className="text-white hover:bg-primary block px-3 py-2 rounded-md text-base font-medium"
                     >
                         Map
+                    </Link>
+                    <Link
+                        to="/people"
+                        className="text-white hover:bg-primary block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                        People
+                    </Link>
+                    <Link
+                        to="/sad-people"
+                        className="text-white hover:bg-primary block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                        People
                     </Link>
                 </div>
             </div>
