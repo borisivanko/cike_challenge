@@ -16,7 +16,7 @@ function Home() {
                             our location-based heatmap.</p>
                         <Link to='/map'
                            className="bg-white hover:bg-gray-200 text-primary font-bold py-3 px-6 rounded-full inline-block uppercase tracking-wider text-xl">Try
-                            It Now</Link>
+                            It Now 😼</Link>
                     </div>
                 </div>
             </header>
