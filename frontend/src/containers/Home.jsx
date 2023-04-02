@@ -42,37 +42,57 @@ function Home() {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-10">
                         <h2 className="text-3xl font-bold">Key Features</h2>
-                        <p className="text-xl">Our service provides a range of features to help entrepreneurs identify
-                            gaps in their city's market.</p>
+i                        <p className="text-xl">Our service provides a range of features to help entrepreneurs identify gaps in their city's market.</p>
                     </div>
                     <div className="flex flex-wrap -mx-4">
                         <div className="w-full md:w-1/3 px-4 mb-8">
-                            <div className="bg-gray-100 rounded-lg p-6">
-                                <i className="text-4xl mb-4 fas fa-map-marker-alt"></i>
+                            <div className="bg-gray-100 rounded-lg p-6 flex flex-col h-full">
                                 <h3 className="text-xl font-bold mb-2">Location-based Analysis</h3>
-                                <p className="text-lg">Our service uses location-based data to identify areas with high
-                                    demand for certain types of businesses.</p>
+                                <p className="text-lg flex-grow">Our service uses location-based data to identify areas with high demand for certain types of businesses.</p>
                             </div>
                         </div>
                         <div className="w-full md:w-1/3 px-4 mb-8">
-                            <div className="bg-gray-100 rounded-lg p-6">
-                                <i className="text-4xl mb-4 fas fa-chart-line"></i>
+                            <div className="bg-gray-100 rounded-lg p-6 flex flex-col h-full">
                                 <h3 className="text-xl font-bold mb-2">Real-time Insights</h3>
-                                <p className="text-lg">Our service provides real-time insights to help you stay
-                                    up-to-date with changing market conditions.</p>
+                                <p className="text-lg flex-grow">Our service provides real-time insights to help you stay up-to-date with changing market conditions.</p>
                             </div>
                         </div>
                         <div className="w-full md:w-1/3 px-4 mb-8">
-                            <div className="bg-gray-100 rounded-lg p-6">
-                                <i className="text-4xl mb-4 fas fa-search-location"></i>
+                            <div className="bg-gray-100 rounded-lg p-6 flex flex-col h-full">
                                 <h3 className="text-xl font-bold mb-2">Customizable Search</h3>
-                                <p className="text-lg">Our service allows you to customize your search to find the
-                                    perfect location for your business.</p>
+                                <p className="text-lg flex-grow">Our service allows you to customize your search to find the perfect location for your business.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+            <footer className="bg-gray-800 text-gray-400">
+                <div className="container mx-auto py-8 px-4">
+                    <div className="flex flex-wrap -mx-4">
+                        <div className="w-full md:w-1/2 px-4 mb-8">
+                            <h3 className="text-xl font-bold mb-2">About Us</h3>
+                            <p className="text-lg">Our mission is to provide location-based insights to help businesses identify gaps in the market and make informed decisions about where to start or expand their ventures. With our expertise in data analysis and market research, we are dedicated to helping entrepreneurs achieve their goals and grow their businesses.</p>
+                        </div>
+                        <div className="w-full md:w-1/2 px-4 mb-8">
+                            <h3 className="text-xl font-bold mb-2">Contact Us</h3>
+                            <ul className="list-unstyled">
+                                <li className="mb-4">
+                                    Rumanova 1, 040 01 Košice, Slovakida
+                                </li>
+                                <li className="mb-4">
+                                    +421 912 345 678
+                                </li>
+                                <li className="mb-4">
+                                    example@example.com
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="text-center text-sm">
+                        <p>&copy; 2023 Company. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
         </>
     )
 }
