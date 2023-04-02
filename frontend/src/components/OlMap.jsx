@@ -140,7 +140,7 @@ function OlMap({mapId, heatMapGeoJson, showTitles, selectedCategory, categories}
                 center: coordinates,
                 origin: 'bottom-right',
                 zoom: zoom,
-                maxZoom: 17,
+                maxZoom: 20,
                 minZoom: 13.5
             }),
         })
