@@ -41,7 +41,7 @@ function Map () {
             <div className="form-group">
                 <div className="w-full bg-gray-800 flex flex-wrap py-4 px-4" >
                     {categories.map((category, index) => {
-                        return   <div
+                        return   <div key={category}
                                 className={`px-4 py-2 mx-2 my-2 cursor-pointer ${category === selectedCategory ? "bg-[#32CD32]" : "bg-[#f9eaea]"} `} onClick={() => {  setSelectedCategory(category) }}>
                         <p className="text-base font-semibold text-center text-black">
                     {category}

@@ -5,7 +5,8 @@ import View from 'ol/View.js';
 import {useEffect, useState} from "react";
 import VectorSource from "ol/source/Vector.js";
 import {GeoJSON} from "ol/format.js";
-import {Heatmap} from "ol/layer.js";
+import {Heatmap, Vector} from "ol/layer.js";
+import {Circle, Fill, Stroke, Style, Text} from "ol/style.js";
 
 function OlMap({mapId, heatMapGeoJson}) {
 
@@ -52,10 +53,34 @@ function OlMap({mapId, heatMapGeoJson}) {
             }
         });
 
+
+        const style = new Style({
+            image: new Circle({
+                radius: 2,
+                fill: new Fill({color: '#6ae850'})
+            }),
+            text: new Text({
+                font: 'bold 11px "Open Sans", "Arial Unicode MS", "sans-serif"',
+                placement: 'point',
+                fill: new Fill({color: '#fff'}),
+                stroke: new Stroke({color: '#000', width: 2}),
+            }),
+        });
+        var styleFunction = function(feature) {
+            style.getText().setText(feature.get('title'));
+            return style;
+        }
+
+        const vectorLayer = new Vector({
+            source: heatmapSource,
+            style: styleFunction
+        });
+
         const map = new Map({
             layers: [
                tile,
-                heatmapLayer
+                heatmapLayer,
+                vectorLayer
             ],
             target: mapId,
             view: new View({
@@ -76,7 +101,6 @@ function OlMap({mapId, heatMapGeoJson}) {
             const zoom = map.getView().getZoom()
             heatmapLayer.setRadius(zoom * 2)
         });
-
 
         return () => {
             map.setTarget(undefined)
