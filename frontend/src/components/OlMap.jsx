@@ -8,7 +8,7 @@ import {GeoJSON} from "ol/format.js";
 import {Heatmap, Vector} from "ol/layer.js";
 import {Circle, Fill, Stroke, Style, Text} from "ol/style.js";
 
-const calculateBlurRadius = (zoom) => Math.exp(Math.exp(zoom * 0.105)) * 0.5 - 17
+const calculateBlurRadius = (zoom) => Math.exp(Math.exp(zoom * 0.105)) * 0.6 - 17
 
 function OlMap({mapId, heatMapGeoJson}) {
 
@@ -25,7 +25,7 @@ function OlMap({mapId, heatMapGeoJson}) {
         const heatmapLayer = new Heatmap({
             title: "HeatMap",
             source: heatmapSource,
-            blur: calculateBlurRadius(15) * 1.5,
+            blur: calculateBlurRadius(15) * 2.25,
             radius: calculateBlurRadius(15),
             weight: function (feature) {
                 return 1;
@@ -104,7 +104,7 @@ function OlMap({mapId, heatMapGeoJson}) {
         map.getView().on('change:resolution', () => {
             const zoom = map.getView().getZoom();
             heatmapLayer.setRadius(calculateBlurRadius(zoom));
-            heatmapLayer.setBlur(calculateBlurRadius(zoom) * 1.5);
+            heatmapLayer.setBlur(calculateBlurRadius(zoom) * 2.25);
         });
 
         return () => {
