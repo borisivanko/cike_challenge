@@ -1,6 +1,7 @@
 import api from '../api'
 import {useEffect, useState} from "react";
 import OlMap from "../components/OlMap.jsx";
+import CatLoadingSpinner from "../components/CatLoadingSpinner.jsx";
 
 function Map () {
     const [data, setData] = useState({type: "FeatureCollection",
@@ -9,6 +10,7 @@ function Map () {
     const [selectedCategory, setSelectedCategory] = useState('pharmacy');
     const [showTitles, setShowTitles] = useState(false);
     const [showCategories, setShowCategories] = useState(true)
+    const [loadingSelectedCategory, setLoadingSelectedCategory] = useState(true)
 
     useEffect(() => {
         api.get(`/list-pois?category=${selectedCategory}`)
@@ -23,11 +25,10 @@ function Map () {
             .catch(error => {
                 console.error(error);
             });
+        setLoadingSelectedCategory(false)
     }, [selectedCategory]);
 
     useEffect(() => {
-
-
         api.get('/all-categories')
             .then(response => {
                 console.log(response.data)
@@ -73,8 +74,11 @@ function Map () {
                 </div>
             </div>
 
-            {data.features.length &&
-                <OlMap heatMapGeoJson={data} mapId='map' categories={categories} showTitles={showTitles}/>
+            {!loadingSelectedCategory ?
+                <OlMap heatMapGeoJson={data} mapId='map' categories={categories} showTitles={showTitles}/> :
+                <div className='flex justify-center'>
+                    <CatLoadingSpinner/>
+                </div>
             }
         </>
     )
