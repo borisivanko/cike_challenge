@@ -5,17 +5,17 @@ import {Link} from "react-router-dom";
 function Home() {
     return (
         <>
-            <header className="bg-gradient-to-r from-indigo-600 to-blue-500 py-20">
+            <header className="bg-gradient-to-r from-primary-light to-primary-dark py-20">
                 <div className="container mx-auto px-4 flex flex-wrap md:flex-nowrap items-center gap-x-4">
                     <div className="w-full md:w-1/2 mb-12 md:mb-0">
                         <img src={catTownGif} alt="Cityscape" className="rounded-lg shadow-lg"/>
                     </div>
                     <div className="w-full md:w-1/2 text-white ml-8">
-                        <h1 className="text-4xl font-bold mb-4">Discover the Gaps in Your City's Market</h1>
-                        <p className="text-xl mb-8">Find out where there's a high demand for businesses like yours with
+                        <h1 className="text-4xl font-bold mb-6">Discover the Gaps in Your City's Market</h1>
+                        <p className="text-xl mb-10">Find out where there's a high demand for businesses like yours with
                             our location-based heatmap.</p>
                         <Link to='/map'
-                           className="bg-white hover:bg-gray-200 text-indigo-600 font-bold py-3 px-6 rounded-full inline-block uppercase tracking-wider">Try
+                           className="bg-white hover:bg-gray-200 text-primary font-bold py-3 px-6 rounded-full inline-block uppercase tracking-wider text-xl">Try
                             It Now</Link>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ function Home() {
                     </div>
                 </div>
             </section>
-            <footer className="bg-gray-800 text-gray-400">
+            <footer className="bg-primary-dark text-white">
                 <div className="container mx-auto py-8 px-4">
                     <div className="flex flex-wrap -mx-4">
                         <div className="w-full md:w-1/2 px-4 mb-8">
