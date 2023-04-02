@@ -1,6 +1,8 @@
 import api from '../api'
 import {useEffect, useState} from "react";
 import OlMap from "../components/OlMap.jsx";
+import {categoriesTranslations} from "../utils/translations.js";
+
 
 function Map () {
     const [data, setData] = useState({type: "FeatureCollection",
@@ -54,27 +56,30 @@ function Map () {
                         return   <div key={category}
                                 className={`px-4 py-2 mx-2 my-2 cursor-pointer ${category === selectedCategory ? "bg-[#32CD32]" : "bg-[#f9eaea]"} `} onClick={() => {  setSelectedCategory(category) }}>
                         <p className="text-base font-semibold text-center text-black">
-                    {category}
+                    {categoriesTranslations[category] ?? category}
                         </p>
                         </div>
                     })}
+                    {showCategories &&
+                        <div className="form-group">
+                            <div className="w-full bg-gray-800 flex flex-wrap py-4 px-4" >
+                                <div className="cursor-pointer" onClick={() => {  setShowTitles(!showTitles) }}>
+                                    <p className="text-base font-semibold text-center text-white">
+                                        {showTitles ? "Hide Titles": "Show titles"}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
 
                 </div>
             </div>
 
 
-            <div className="form-group">
-                <div className="w-full bg-gray-800 flex flex-wrap py-4 px-4" >
-                    <div className="cursor-pointer" onClick={() => {  setShowTitles(!showTitles) }}>
-                        <p className="text-base font-semibold text-center text-white">
-                            {showTitles ? "Hide Titles": "Show titles"}
-                        </p>
-                    </div>
-                </div>
-            </div>
+
 
             {data.features.length &&
-                <OlMap heatMapGeoJson={data} mapId='map' categories={categories} showTitles={showTitles}/>
+                <OlMap heatMapGeoJson={data} mapId='map' categories={categories} showTitles={showTitles} selectedCategory={selectedCategory}/>
             }
         </>
     )

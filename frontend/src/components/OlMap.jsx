@@ -10,6 +10,7 @@ import {Circle, Fill, Stroke, Style, Text} from "ol/style.js";
 import {Circle as CircleGeom, Point} from "ol/geom.js";
 import api from "../api.js";
 import {Feature} from "ol";
+import {categoriesTranslations} from "../utils/translations.js";
 
 const calculateBlurRadius = (zoom) => Math.exp(Math.exp(zoom * 0.105)) * 0.6 - 17
 
@@ -98,6 +99,9 @@ function OlMap({mapId, heatMapGeoJson, showTitles, selectedCategory, categories}
                 featureProjection: "EPSG:4326"
             }),
         });
+        if (pinSource === null) {
+            setPinSource(pinSource);
+        }
         const pinLayer = new Vector({
             source: pinSource,
             style: new Style({
@@ -174,13 +178,17 @@ function OlMap({mapId, heatMapGeoJson, showTitles, selectedCategory, categories}
     return (
         <div className="flex">
             <div style={{height:'100vh',width:'100%'}} className="map-container" id={mapId}/>
-            <div className="bg-[#31a354] py-6 px-2 flex flex-col gap-10 justify-center">
+            <div className="bg-[#31a354] py-6 px-2 flex flex-col gap-12">
                 <div className="my-4">
                     {peopleInProximity && <p className="text-base font-semibold text-center text-black">Flats in 1km proximity <br/> a.k.a Number of potentional customers: <br/> <span className="text-white text-2xl">{peopleInProximity}</span></p>}
                 </div>
 
                 <div className="my-4">
                     {poisInProximity && <p className="text-base font-semibold text-center text-black">Similar spots in 1km proximity<br/> a.k.a Number of potentional competitors: <br/> <span className="text-white text-2xl">{poisInProximity}</span></p>}
+                </div>
+
+                <div className="my-4">
+                    {selectedCategory && <p className="text-base font-semibold text-center text-black">Selected Category<br/> <br/> <span className="text-white text-2xl">{categoriesTranslations[selectedCategory] ?? selectedCategory}</span></p>}
                 </div>
 
             </div>
