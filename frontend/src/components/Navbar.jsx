@@ -40,7 +40,7 @@ function Navbar() {
                                 to="/sad-people"
                                 className="text-gray-300 hover:bg-primary hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                             >
-                                Sad People
+                                Sad People 😿
                             </Link>
 
                         </div>
