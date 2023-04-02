@@ -19,13 +19,37 @@ class POISerializer(serializers.HyperlinkedModelSerializer):
 
         rel = min(instance.homes_in_proximity, 500)/500
         w = (np.log10(rel) + 1.8) / 1.8 if rel >= 0.02 else 0
-
         response_dict["properties"] = {
             "title": instance.name,
             "type": instance.typ_0,
             "type2": instance.typ_1,
             "weight": w
         }
+        print(response_dict)
+        return response_dict
+    
+class ReversedPOISerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = POI
+        fields = ['name', 'x', 'y', 'typ_0', 'typ_1', 'poly_15']
+
+
+    def to_representation(self, instance):
+        response_dict = dict()
+        response_dict["type"] = "Feature"
+        response_dict["geometry"] = {
+            "type": "Point",
+            "coordinates": [instance.x, instance.y]
+        }
+
+        rel = min(instance.homes_in_proximity, 500)/500
+        response_dict["properties"] = {
+            "title": instance.name,
+            "type": instance.typ_0,
+            "type2": instance.typ_1,
+            "weight": 0
+        }
+        print(response_dict)
         return response_dict
 #
 # LEFT-TOP 21.171520, 48.766840

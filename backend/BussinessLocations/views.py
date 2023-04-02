@@ -14,7 +14,7 @@ from rest_framework.response import Response
 
 
 from BussinessLocations.models import POI, Home, MHD
-from BussinessLocations.serializers import POISerializer, HomeSerializer, MHDSerializer
+from BussinessLocations.serializers import POISerializer, HomeSerializer, MHDSerializer, ReversedPOISerializer
 
 
 @api_view(['GET'])
@@ -36,6 +36,45 @@ def get_pois(request):
         return Response(serializer.data)
     except Exception as e:
         return Response(status=status.HTTP_404_NOT_FOUND, data={'error': str(e)})
+
+
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_reversed_pois(request):
+    """
+    List all models by <<Model Name>> with filter features
+    """
+    category = request.GET.get('category','all')
+
+    try:
+        if category == 'all':
+            pois = POI.objects.all()
+        else:
+            pois = POI.objects.filter(typ_0=category)
+
+        point_tree = spatial.cKDTree(np.array([[p.x, p.y] for p in pois]))
+        homes_without_pois = []
+        for h in Home.objects.all():
+            if len(point_tree.query_ball_point(np.array([h.x, h.y]), 0.007)) == 0:
+                response_dict = dict()
+                response_dict["type"] = "Feature"
+                response_dict["geometry"] = {
+                    "type": "Point",
+                    "coordinates": [h.x, h.y]
+                }
+
+                response_dict["properties"] = {
+                    "title": "",
+                    "weight": 0.3
+                }
+                homes_without_pois.append(response_dict)
+
+        serializer = ReversedPOISerializer(pois, many=True)
+        d = serializer.data + homes_without_pois
+        return Response(d)
+    except Exception as e:
+        return Response(status=status.HTTP_404_NOT_FOUND, data={'error': str(e)})
+
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
