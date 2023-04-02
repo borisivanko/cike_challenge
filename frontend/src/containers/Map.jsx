@@ -44,7 +44,7 @@ function Map () {
     return (
         <>
             <div className="form-group">
-                <div className="w-full bg-gray-800 flex flex-wrap py-4 px-4" >
+                <div className="w-full bg-primary-dark flex flex-wrap py-4 px-4" >
                     <div className={`w-full transition flex items-center justify-center text-white ${!showCategories && 'rotate-180'}`} onClick={() => setShowCategories((prevState) => !prevState)}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd"
@@ -54,13 +54,17 @@ function Map () {
                     </div>
 
                     {showCategories && categories.map((category) => {
-                        return   <div key={category}
-                                className={`px-4 py-2 mx-2 my-2 cursor-pointer ${category === selectedCategory ? "bg-[#32CD32]" : "bg-[#f9eaea]"} `} onClick={() => {  setSelectedCategory(category) }}>
-                        <p className="text-base font-semibold text-center text-black">
-                    {categoriesTranslations[category] ?? category}
-                        </p>
+                        return <div key={category}
+                                    className={`px-4 py-2 mx-2 my-2 cursor-pointer transition ${category === selectedCategory ? "bg-primary-light hover:bg-primary" : "bg-white hover:bg-gray-300"} `}
+                                    onClick={() => {
+                                        setSelectedCategory(category)
+                                    }}>
+                            <p className="text-base font-semibold text-center text-primary-dark">
+                                {categoriesTranslations[category] ?? category}
+                            </p>
                         </div>
                     })}
+
                     {showCategories &&
                         <div className="form-group">
                             <div className="w-full bg-gray-800 flex flex-wrap py-4 px-4" >
