@@ -43,8 +43,9 @@ function Map () {
 
     return (
         <>
-            <div className="form-group">
-                <div className="w-full bg-primary-dark flex flex-wrap py-4 px-4" >
+        <div className="flex h-screen">
+            <div className="form-group flex h-full flex-row">
+                <div className="w-full bg-primary-dark flex flex-col overflow-auto h-full py-4 px-4" >
                     <div className={`w-full transition flex items-center justify-center text-white ${!showCategories && 'rotate-180'}`} onClick={() => setShowCategories((prevState) => !prevState)}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd"
@@ -52,6 +53,16 @@ function Map () {
                                   clipRule="evenodd" />
                         </svg>
                     </div>
+
+                    {showCategories &&
+                            <div className="w-full bg-gray-800 flex flex-wrap py-4 px-4" >
+                                <div className="cursor-pointer" onClick={() => {  setShowTitles(!showTitles) }}>
+                                    <p className="text-base font-semibold text-center text-white">
+                                        {showTitles ? "Hide Titles": "Show titles"}
+                                    </p>
+                                </div>
+                            </div>
+                    }
 
                     {showCategories && categories.map((category) => {
                         return <div key={category}
@@ -82,10 +93,11 @@ function Map () {
 
             {!loadingSelectedCategory ?
                 <OlMap heatMapGeoJson={data} mapId='map' categories={categories} showTitles={showTitles} selectedCategory={selectedCategory}/> :
-                <div className='flex justify-center'>
+                <div className='flex justify-center w-4/5'>
                     <CatLoadingSpinner/>
                 </div>
             }
+        </div>
         </>
     )
 }

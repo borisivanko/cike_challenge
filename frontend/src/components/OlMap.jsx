@@ -195,15 +195,15 @@ function OlMap({mapId, heatMapGeoJson, showTitles, selectedCategory, categories}
     }, [heatMapGeoJson, showTitles, pinSource]);
 
     return (
-        <div className="flex">
+        <div className="flex w-full h-screen overflow-hidden">
             <div style={{height:'100vh',width:'100%'}} className="map-container" id={mapId}/>
-            <div className="bg-primary py-6 px-2 flex flex-col gap-12">
+            <div className="bg-primary py-6 px-2 flex flex-col gap-12 w-1/6">
                 <div className="my-4">
                     {peopleInProximity && <p className="text-base font-semibold text-center text-white">Flats in 1km proximity <br/> a.k.a Number of potentional customers: <br/> <span className="text-2xl">{peopleInProximity}</span></p>}
                 </div>
 
                 <div className="my-4">
-                    {poisInProximity && <p className="text-base font-semibold text-center text-white">Similar spots in 1km proximity<br/> a.k.a Number of potentional competitors: <br/> <span className="text-2xl">{poisInProximity}</span></p>}
+                    {poisInProximity !== null && <p className="text-base font-semibold text-center text-white">Similar spots in 1km proximity<br/> a.k.a Number of potentional competitors: <br/> <span className="text-2xl">{poisInProximity}</span></p>}
                 </div>
 
                 <div className="my-4">
